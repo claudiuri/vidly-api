@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "set NODE_ENV=test&& node index.js",
     "dev": "nodemon index.js",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll --verbose"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^3.0.0",
     "config": "^3.2.2",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
@@ -25,5 +25,8 @@
     "mongoose": "^5.6.5",
     "winston": "^2.4.0",
     "winston-mongodb": "^3.0.0"
+  },
+  "devDependencies": {
+    "supertest": "^3.0.0"
   }
 }
