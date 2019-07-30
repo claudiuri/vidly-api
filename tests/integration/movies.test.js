@@ -113,6 +113,46 @@ describe('/api/movies', () =>{
             expect(res.status).toBe(400);
         });
 
+        it('should return 400 if numberInStock the movie is less than 0', async () => {
+            numberInStock = -1;
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        });
+
+        it('should return 400 if numberInStock the movie is more than 255', async () => {
+            numberInStock = 256;
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        });
+
+        it('should return 400 if dailyRentalRate the movie is less than 0', async () => {
+            dailyRentalRate = -1;
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        });
+
+        it('should return 400 if dailyRentalRate the movie is more than 255', async () => {
+            dailyRentalRate = 256;
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        });
+
+        it('should return 400 if genreId the movie is invalid', async () => {
+            genreId = "1234";
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        });
+
         it('should save the movie if it is valid', async () => {
             await exec();
 
