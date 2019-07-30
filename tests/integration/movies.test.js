@@ -277,4 +277,81 @@ describe('/api/movies', () =>{
             expect(res.body).toHaveProperty('dailyRentalRate', newDailyRentalRate);
         });
     });  
+
+    describe('DELETE /:id', () => {
+        let token; 
+        let movie; 
+        let id; 
+
+        const exec = async () => {
+            return await request(server)
+            .delete('/api/movies/' + id)
+            .set('x-auth-token', token)
+            .send();
+        }
+
+        beforeEach( async () => {
+            movie = new Movie({ 
+                title: 'movie1',
+                dailyRentalRate: 10,
+                numberInStock: 10,
+                genre: genre 
+            });
+
+            await movie.save();
+            
+            id = movie._id; 
+            token = new User({ isAdmin: true }).generateAuthToken();     
+        })
+
+        it('should return 401 if client is not logged in', async () => {
+            token = ''; 
+
+            const res = await exec();
+
+            expect(res.status).toBe(401);
+        });
+
+        it('should return 403 if the user is not an admin', async () => {
+            token = new User({ isAdmin: false }).generateAuthToken(); 
+
+            const res = await exec();
+
+            expect(res.status).toBe(403);
+        });
+
+        it('should return 404 if id is invalid', async () => {
+            id = 1; 
+            
+            const res = await exec();
+
+            expect(res.status).toBe(404);
+        });
+
+        it('should return 404 if no movie with the given id was found', async () => {
+            id = mongoose.Types.ObjectId();
+
+            const res = await exec();
+
+            expect(res.status).toBe(404);
+        });
+
+        it('should delete the movie if input is valid', async () => {
+            await exec();
+
+            const movieInDb = await Movie.findById(id);
+
+            expect(movieInDb).toBeNull();
+        });
+
+        it('should return the removed movie', async () => {
+            const res = await exec();
+
+            expect(res.body).toHaveProperty('_id', movie._id.toHexString());
+            expect(res.body).toHaveProperty('title', movie.title);
+            expect(res.body).toHaveProperty('dailyRentalRate', movie.dailyRentalRate);
+            expect(res.body).toHaveProperty('numberInStock', movie.numberInStock);
+            expect(res.body).toHaveProperty('genre');
+        });
+    }); 
 });

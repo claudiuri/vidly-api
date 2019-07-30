@@ -2,6 +2,7 @@ const {Movie, validate} = require('../models/movie');
 const {Genre} = require('../models/genre');
 const mongoose = require('mongoose');
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const validateObjectId = require('../middleware/validateObjectId');
 const express = require('express');
 const router = express.Router();
@@ -55,7 +56,7 @@ router.put('/:id', [validateObjectId, auth], async (req, res) => {
   res.send(movie);
 });
 
-router.delete('/:id', [validateObjectId, auth], async (req, res) => {
+router.delete('/:id', [validateObjectId, auth, admin], async (req, res) => {
   const movie = await Movie.findByIdAndRemove(req.params.id);
 
   if (!movie) return res.status(404).send('The movie with the given ID was not found.');
