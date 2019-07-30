@@ -58,5 +58,77 @@ describe('/api/movies', () =>{
         });
     });
 
+    describe('POST /',  () => {
+        let token;
+        let title;
+        let genre;
+        let genreId;
+        let numberInStock;
+        let dailyRentalRate;
 
+        const exec = async () => {
+            return await request(server)
+                .post('/api/movies')
+                .set('x-auth-token', token)
+                .send({ 
+                    title: title,
+                    genreId: genreId,
+                    numberInStock: numberInStock,
+                    dailyRentalRate: dailyRentalRate
+                });
+        }
+
+        beforeEach(() => {
+            token = new User().generateAuthToken();
+            genre = new Genre({ name: "genre1" });
+            genre.save()
+
+            title = 'movie1';
+            numberInStock = 20;
+            dailyRentalRate = 5;
+            genreId = genre._id;
+        });
+
+        it('should return 401 if client is not logged in', async () => {
+            token = '';
+
+            const res = await  exec();
+
+            expect(res.status).toBe(401);
+        });
+
+        it('should return 400 if title the movie is less than 5 characters', async () => {
+            title = '1234';
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        });
+
+        it('should return 400 if title the movie is more than 50 characters', async () => {
+            title = new Array(52).join('a');
+
+            const res = await exec();
+
+            expect(res.status).toBe(400);
+        });
+
+        it('should save the movie if it is valid', async () => {
+            await exec();
+
+            const movie  = await Movie.find({ title: 'movie1' });
+
+            expect(movie).not.toBeNull();
+        });
+
+        it('should return the movie if it is valid', async () => {
+            const res = await exec();
+
+            expect(res.body).toHaveProperty('_id');
+            expect(res.body).toHaveProperty('genre');
+            expect(res.body).toHaveProperty('title', title);
+            expect(res.body).toHaveProperty('numberInStock', numberInStock);
+            expect(res.body).toHaveProperty('dailyRentalRate', dailyRentalRate);
+        });
+    });
 });
