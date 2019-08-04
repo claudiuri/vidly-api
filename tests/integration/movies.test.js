@@ -11,8 +11,8 @@ describe('/api/movies', () =>{
     beforeEach(() => { server = require('../../index') });
     afterEach(async () => { 
         server.close(); 
-        await Genre.remove({});
-        await Movie.remove({});
+        await Genre.deleteMany({});
+        await Movie.deleteMany({});
     });
 
     describe('GET /', () => {
