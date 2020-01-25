@@ -5,9 +5,11 @@ let server;
 
 describe('/api/users',  () =>{
     beforeEach(() => { server = require('../../index'); })
-    afterEach(async () => { 
-        server.close(); 
+    afterEach(async (done) => { 
         await User.deleteMany({});
+        // mongoose.disconnect()
+        server.close(); 
+        done()
     });
 
     describe('POST /', () => {

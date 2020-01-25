@@ -9,10 +9,12 @@ let server;
 describe('/api/movies', () =>{ 
 
     beforeEach(() => { server = require('../../index') });
-    afterEach(async () => { 
-        server.close(); 
+    afterEach(async (done) => { 
         await Genre.deleteMany({});
         await Movie.deleteMany({});
+        // mongoose.disconnect()
+        server.close(); 
+        done()
     });
 
     describe('GET /', () => {

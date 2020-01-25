@@ -8,9 +8,11 @@ let server;
 describe('/api/genres', () =>{
 
     beforeEach(() => { server = require('../../index'); })
-    afterEach(async () => { 
-        server.close(); 
+    afterEach(async (done) => { 
         await Genre.deleteMany({});
+        // mongoose.disconnect()
+        server.close(); 
+        done();
     });
 
     describe('GET /', () => {

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "set NODE_ENV=production&& node index.js",
     "dev": "nodemon index.js",
-    "test": "set NODE_ENV=test&&jest --watchAll --verbose --maxWorkers=1 --silent"
+    "test": "set NODE_ENV=test&&jest --verbose --maxWorkers=1 --silent --forceExit --detectOpenHandles"
   },
   "keywords": [],
   "author": "",

@@ -51,10 +51,12 @@ describe('/api/returns', () => {
     await rental.save();
   });
 
-  afterEach(async () => { 
-    await server.close(); 
+  afterEach(async (done) => { 
     await Rental.deleteMany({});
     await Movie.deleteMany({});
+    // mongoose.disconnect()
+    server.close(); 
+    done()
   });  
 
   it('should return 401 if client is not logged in', async () => {
