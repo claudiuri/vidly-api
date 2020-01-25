@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "vidly_jwtPrivateKey",
+  "db": "mongodb+srv://claudiuri:a1b2c3..@cluster0-duzbz.gcp.mongodb.net/test?retryWrites=true&w=majority"
+}
