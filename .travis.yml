@@ -9,11 +9,11 @@ cache:
   - node_modules
 install:
   - npm install
-script:
-  - npm test
+# script:
+#   - npm test
 deploy:
   provider: gae
-  keyfile: vidly-secret.json.enc
+  keyfile: pT146Q2KzcYHt9t2QWVKdJxYqwLMbcT8zr+U4q4RorA8/mUd/zb1qYtSfOD6CarKhvrJP9dehHaurcHtsqqKXVwz6H0Z8BsG6jvbA5g01ArAUl+7JN6PFjTZD3R0QhiSY6NKqpp1pFyJ51+sUkbalWMkzLa5GNlBhdcCjjhh61X0FrxoYkSnJQsOwpAnqX8lvkoLGFVCG7ivBoWfC4iyfEBNgveGzGO5hzdzgmlAC2KRNWcwvZhQxrYGuXtaFaX77qPOcPIbxF2scFbFeR7JrVPeULyWSSqKvPkPMFDmj/Ps2WWGGJoQYMTtzAbB94qJzhacidGPpDoslEtQ7vHnxGQAksZ0/Vgb1jha97lTFdxJTW3qtGIqg3vQtDbouTY3Pck2m768rTXAPI6uE18XDkJWse8GTRThI51JYvZRZzcH2AhqvwQWb2+NCOINz6aX8NjIyVtjarO5OhfDKcvjb6+eLiAPv9yedtkjN/5mg6QTIiWdiiCHsMbuGvlXt3Or4Sk8sAuVZokX7Ojp+r7Ix/EDTlHbHshUkhQ32pLijSkRBXRjvg2TXDtvyLLBJyaVnlvO473Zja847djpcxeNcn0QDPbMWBbCUEFxaztrrmm90o8EpcSdnhAMjZ1XCxWXgpiyiG3vgo4vhkn8bwJ0FAjH8NdiNu/VTe1DDZsay5I=
   project: vidly-280513
   default: true
   on:
