@@ -12,6 +12,7 @@ install:
 script:
   - npm test
 deploy:
+  provider: gae
   keyfile: vidly-secret.json.enc
   project: vidly-280513
   default: true
