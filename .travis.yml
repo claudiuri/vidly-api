@@ -11,3 +11,9 @@ install:
   - npm install
 script:
   - npm test
+deploy:
+  keyfile: vidly-secret.json.enc
+  project: vidly-280513
+  default: true
+  on:
+      all_branches: true
