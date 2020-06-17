@@ -11,7 +11,7 @@ install:
   - npm install
 deploy:
   provider: gae
-  keyfile: vidly-secret-encrypited.txt
+  keyfile: vidly-secret.json.enc
   project: vidly-280513
   default: true
   on:
