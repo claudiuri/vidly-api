@@ -8,8 +8,8 @@ cache:
   directories:
   - node_modules
 before_install:
-  - openssl aes-256-cbc -K $encrypted_5dd9c4483e20_key -iv $encrypted_5dd9c4483e20_iv
-    -in vidly-secret.json.enc -out vidly-secret.json -d
+- openssl aes-256-cbc -K $encrypted_5dd9c4483e20_key -iv $encrypted_5dd9c4483e20_iv
+  -in vidly-secret.json.enc -out vidly-secret.json -d
 install:
 - npm install
 deploy:
@@ -19,4 +19,3 @@ deploy:
   default: true
   on:
     all_branches: true
-
