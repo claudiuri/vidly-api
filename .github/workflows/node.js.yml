@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -19,3 +19,14 @@ jobs:
         node-version: '12.x'
     - run: npm ci
     - run: npm test
+  
+  deploy:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Deploy to Google App Engine
+      - uses: atRobertoFlores/gae_deploy_action@master
+        with:
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
+          project_name: ${{ secrets.PROJECT_NAME }}
