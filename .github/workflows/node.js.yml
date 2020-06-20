@@ -18,6 +18,8 @@ jobs:
       with:
         node-version: '12.x'
     - run: npm ci
+    - run: npm test
+    
     - name: Deploy App
       uses: claudiuri/deploy-gae-action@v1.2
       with:
