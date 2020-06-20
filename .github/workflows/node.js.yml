@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - name: Deploy App
-      uses: claudiuri/deploy-gae-action@master
+      uses: claudiuri/deploy-gae-action@v1.2
       with:
        service-account:  ${{ secrets.SERVICE_ACCOUNT }}
        project-id: ${{ secrets.PROJECT_ID }}  
