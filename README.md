@@ -1,6 +1,3 @@
-# vidly-api
-Movie Rental API
-
 <h1 align="center">
   Vidly-Api 🎞
 </h1>
