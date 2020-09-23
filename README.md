@@ -16,6 +16,7 @@
 - [Winston](https://github.com/winstonjs/winston)
 - [Joi](https://github.com/hapijs/joi)
 - [Supertest](https://github.com/visionmedia/supertest)
+- Google Cloud
 
 ## 🔥 Instalação e execução
 
